@@ -1,0 +1,20 @@
+name: Simple Workflow
+
+on:
+  push:
+    branches:
+    - '*'  
+
+jobs:
+  run-command:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Print github.ref
+        run: echo "${{ github.ref }}"
+
+      - name: Run a simple command
+        run: echo "Hello, World! This is a simple GitHub Actions workflow running on branch ${{ github.ref }}"

@@ -3,7 +3,7 @@ name: Simple Workflow
 on:
   push:
     branches:
-    - '*'  
+    - '**'  
 
 jobs:
   run-command:
@@ -17,4 +17,11 @@ jobs:
         run: echo "${{ github.ref }}"
 
       - name: Run a simple command
-        run: echo "Hello, World! This is a simple GitHub Actions workflow running on branch ${{ github.ref }}"
+        run: echo "Hello, World! This is a simple GitHub Actions workflow running on branch ${{ github.ref_name }}"
+
+      - name: Build image
+        uses: docker/build-push-action@v6
+        with:
+          context: .  
+          push: false  
+          pull: true   
